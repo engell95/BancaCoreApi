@@ -13,7 +13,7 @@ namespace BancaCore.Application.Clientes.Queries
         public DateOnly FechaNacimiento { get; set; }
         public string Sexo { get; set; }
         public decimal Ingresos { get; set; }
-        public IList<CuentaBancariaDto> CuentasBancarias { get; set; } = new List<CuentaBancariaDto>();
+        public IList<CuentasDto> CuentasBancarias { get; set; } = new List<CuentasDto>();
         public void Mapping(Profile profile)
         {
             profile.CreateMap<Cliente, ClienteDto>()
@@ -21,7 +21,7 @@ namespace BancaCore.Application.Clientes.Queries
         }
     }
 
-    public class CuentaBancariaDto : IMapFrom<CuentaBancaria>
+    public class CuentasDto : IMapFrom<CuentaBancaria>
     {
         public int Id { get; set; }
         public string NumeroCuenta { get; set; }
@@ -29,7 +29,7 @@ namespace BancaCore.Application.Clientes.Queries
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<CuentaBancaria, CuentaBancariaDto>();
+            profile.CreateMap<CuentaBancaria, CuentasDto>();
         }
     }
 }

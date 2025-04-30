@@ -54,6 +54,7 @@ public partial class BancaDbContext : DbContext, IBancaDbContext
             entity.Property(e => e.NumeroCuenta)
                 .IsRequired()
                 .HasMaxLength(50);
+
             entity.Property(e => e.Saldo).HasColumnType("decimal(18, 2)");
 
             entity.HasOne(d => d.Cliente).WithMany(p => p.CuentasBancaria)
@@ -75,8 +76,7 @@ public partial class BancaDbContext : DbContext, IBancaDbContext
             entity.Property(e => e.Monto).HasColumnType("decimal(18, 2)");
             entity.Property(e => e.SaldoPosterior).HasColumnType("decimal(18, 2)");
             entity.Property(e => e.TipoTransaccion)
-                .IsRequired()
-                .HasMaxLength(20);
+                .IsRequired();
 
             entity.HasOne(d => d.Cuenta).WithMany(p => p.Transacciones)
                 .HasForeignKey(d => d.CuentaId)
