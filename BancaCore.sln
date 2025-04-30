@@ -23,6 +23,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Persistence", "Src\Infrastr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApi", "Src\Presentation\WebApi\WebApi.csproj", "{5797D317-CD03-407F-A86C-FCC9BD7A1553}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{C748E733-ABDB-4664-B41E-EE9FCCB48D7E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BancaCoreApi.Test", "Test\BancaCoreApi.Test\BancaCoreApi.Test.csproj", "{9D69A314-14C3-47A1-A899-4E35B1759A34}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +57,10 @@ Global
 		{5797D317-CD03-407F-A86C-FCC9BD7A1553}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5797D317-CD03-407F-A86C-FCC9BD7A1553}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5797D317-CD03-407F-A86C-FCC9BD7A1553}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D69A314-14C3-47A1-A899-4E35B1759A34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D69A314-14C3-47A1-A899-4E35B1759A34}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D69A314-14C3-47A1-A899-4E35B1759A34}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D69A314-14C3-47A1-A899-4E35B1759A34}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -67,6 +75,7 @@ Global
 		{332F27DF-5227-4794-830A-F9CE229551A6} = {29C3A4A6-1909-4B2A-8A6F-79E1FFBEBF1D}
 		{4B2E8106-05D6-4431-A5A7-780CE26542BF} = {29C3A4A6-1909-4B2A-8A6F-79E1FFBEBF1D}
 		{5797D317-CD03-407F-A86C-FCC9BD7A1553} = {8EA24F81-11EB-459C-951B-D2B783D70680}
+		{9D69A314-14C3-47A1-A899-4E35B1759A34} = {C748E733-ABDB-4664-B41E-EE9FCCB48D7E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {00873214-F4A1-432A-AA90-BD1B0A7102C3}
