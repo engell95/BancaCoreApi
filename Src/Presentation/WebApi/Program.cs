@@ -17,6 +17,7 @@ using NLog;
 using NLog.Web;
 using System;
 using System.IO;
+using System.Reflection;
 
 // Iniciar NLog con la configuración desde appsettings.json
 var logger = NLog.LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
@@ -80,6 +81,10 @@ try
                     Email = BancaCoreConfig.OpenApiContact.Email
                 }
             });
+
+        var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+        var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+        options.IncludeXmlComments(xmlPath);
     });
 
     // Agregar servicios de persistencia e infraestructura al contenedor, pasando la configuración de la aplicación
@@ -102,7 +107,7 @@ try
     builder.Services.AddFluentValidationAutoValidation();
     builder.Services.AddFluentValidationClientsideAdapters();
 
-    // Registrar todos los validadores desde el ensamblado que contiene IJupemaDbContext
+    // Registrar todos los validadores desde el ensamblado que contiene IBancaDbContext
     builder.Services.AddValidatorsFromAssemblyContaining<IBancaDbContext>();
 
     // Customise default API behaviour
