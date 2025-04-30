@@ -3,7 +3,6 @@ using BancaCore.Application.Common.Enumerable;
 using BancaCore.Common.Mappings;
 using BancaCore.Domain.Entities;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace BancaCore.Application.CuentasBancarias.Queries
@@ -14,7 +13,7 @@ namespace BancaCore.Application.CuentasBancarias.Queries
         public string NumeroCuenta { get; set; }
         public decimal Saldo { get; set; }
         public ClienteSimpleDto Cliente { get; set; }
-        public IList<TransaccionDtoSimple> Transacciones { get; set; } = new List<TransaccionDtoSimple>();
+        public TransaccionDtoSimple UltimaTransaccion { get; set; } 
         public void Mapping(Profile profile)
         {
             profile.CreateMap<CuentaBancaria, CuentaBancariaDto>()
@@ -23,14 +22,18 @@ namespace BancaCore.Application.CuentasBancarias.Queries
                     Id = s.Cliente.Id,
                     Nombre = s.Cliente.Nombre
                 }))
-                .ForMember(d => d.Transacciones, opt => opt.MapFrom(s => s.Transacciones.Select(t => new TransaccionDtoSimple
-                {
-                    Id = t.Id,
-                    Monto = t.Monto,
-                    FechaTransaccion = t.FechaTransaccion,
-                    Descripcion = t.Descripcion,
-                    TipoTransaccion = ((EnumTipoTransaccion)t.TipoTransaccion).ToString()
-                })));
+                .ForMember(d => d.UltimaTransaccion, opt => opt.MapFrom(s => s.Transacciones
+                    .OrderByDescending(t => t.FechaTransaccion)
+                    .Select(t => new TransaccionDtoSimple
+                    {
+                        Id = t.Id,
+                        Monto = t.Monto,
+                        FechaTransaccion = t.FechaTransaccion,
+                        Descripcion = t.Descripcion,
+                        TipoTransaccion = ((EnumTipoTransaccion)t.TipoTransaccion).ToString()
+                    })
+                    .FirstOrDefault()
+                ));
         }
     }
 
