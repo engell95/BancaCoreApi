@@ -1,8 +1,8 @@
-﻿using BancaCore.Application.Common.Enumerable;
+using BancaCore.Application.Transacciones.Commands.RealizarDeposito;
+using BancaCore.Common.Enumerable;
 using BancaCore.Common.Interfaces;
 using BancaCore.Domain.Entities;
 using MediatR;
-using System;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -10,7 +10,6 @@ namespace BancaCore.Application.CuentasBancarias.Commands.CreateCuentaBancaria
 {
     public class CreateCuentaBancariaCommand : IRequest<string>
     {
-        public string NumeroCuenta { get; set; }
         public int ClienteId { get; set; }
         public decimal SaldoInicial { get; set; }
     }
@@ -22,36 +21,39 @@ namespace BancaCore.Application.CuentasBancarias.Commands.CreateCuentaBancaria
     public class CreateCuentaBancariaCommandHandler : IRequestHandler<CreateCuentaBancariaCommand, string>
     {
         private readonly IBancaDbContext _context;
+        private readonly IMediator _mediator;
 
-        public CreateCuentaBancariaCommandHandler(IBancaDbContext context)
+        public CreateCuentaBancariaCommandHandler(IBancaDbContext context, IMediator mediator)
         {
             _context = context;
+            _mediator = mediator;
         }
 
         public async Task<string> Handle(CreateCuentaBancariaCommand request, CancellationToken cancellationToken)
         {
+            // Crear la cuenta bancaria con saldo inicial en cero
             var cuenta = new CuentaBancaria
             {
-                NumeroCuenta = request.NumeroCuenta,
+                NumeroCuenta = CuentaBancariaHelper.GenerarNumeroCuenta(),
                 ClienteId = request.ClienteId,
-                Saldo = request.SaldoInicial,
+                Saldo = 0, // Inicializar en cero, el depósito actualizará el saldo
             };
 
             _context.CuentasBancarias.Add(cuenta);
             await _context.SaveChangesAsync(cancellationToken);
 
-            var transaccion = new Transaccion
+            // Si hay un saldo inicial, realizar un depósito utilizando el comando existente
+            if (request.SaldoInicial > 0)
             {
-                CuentaId = cuenta.Id,
-                TipoTransaccion = (int)EnumTipoTransaccion.Deposito,
-                Descripcion = "Depósito inicial",
-                Monto =  request.SaldoInicial,
-                SaldoPosterior = request.SaldoInicial,
-                FechaTransaccion = DateTime.Now
-            };
+                var depositoCommand = new RealizarDepositoCommand
+                {
+                    NumeroCuenta = cuenta.NumeroCuenta,
+                    Monto = request.SaldoInicial,
+                    Descripcion = "Depósito inicial"
+                };
 
-            _context.Transacciones.Add(transaccion);
-            await _context.SaveChangesAsync(cancellationToken);
+                await _mediator.Send(depositoCommand, cancellationToken);
+            }
 
             return cuenta.NumeroCuenta;
         }

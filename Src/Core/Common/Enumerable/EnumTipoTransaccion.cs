@@ -1,4 +1,4 @@
-﻿namespace BancaCore.Application.Common.Enumerable
+﻿namespace BancaCore.Common.Enumerable
 {
 
     public enum EnumTipoTransaccion

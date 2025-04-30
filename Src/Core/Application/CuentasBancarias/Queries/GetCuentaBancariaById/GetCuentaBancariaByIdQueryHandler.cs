@@ -27,16 +27,17 @@ namespace BancaCore.Application.CuentasBancarias.Queries.GetCuentaBancariaById
         public async Task<CuentaBancariaDto> Handle(GetCuentaBancariaByIdQuery request, CancellationToken cancellationToken)
         {
             var cuenta = await _context.CuentasBancarias
-                .AsNoTracking()
-                .ProjectTo<CuentaBancariaDto>(_mapper.ConfigurationProvider)
-                .FirstOrDefaultAsync(c => c.NumeroCuenta == request.NumeroCuenta, cancellationToken);
+           .Include(c => c.Cliente)
+           .Include(c => c.Transacciones)
+           .AsNoTracking()
+           .FirstOrDefaultAsync(c => c.NumeroCuenta == request.NumeroCuenta, cancellationToken);
 
             if (cuenta == null)
             {
                 throw new NotFoundException(nameof(CuentasBancarias), request.NumeroCuenta);
             }
 
-            return cuenta;
+            return _mapper.Map<CuentaBancariaDto>(cuenta);
         }
     }
 }
