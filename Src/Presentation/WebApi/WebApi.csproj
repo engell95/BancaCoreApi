@@ -1,0 +1,52 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+	  <AssemblyName>BancaCore.WebApi</AssemblyName>
+	  <RootNamespace>BancaCore.WebApi</RootNamespace>
+  </PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<WarningLevel>7</WarningLevel>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+		<WarningLevel>7</WarningLevel>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="8.0.8" />
+		<PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.5" />
+		<PackageReference Include="Microsoft.DependencyValidation.Analyzers" Version="0.11.0" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.8">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="8.0.8" />
+		<PackageReference Include="NLog" Version="5.3.4" />
+		<PackageReference Include="NLog.Appsettings.Standard" Version="2.1.0" />
+		<PackageReference Include="NLog.Database" Version="5.3.4" />
+		<PackageReference Include="NLog.Extensions.Logging" Version="5.3.13" />
+		<PackageReference Include="NLog.Web.AspNetCore" Version="5.3.13" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+		<PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.7.3" />
+		<PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="6.7.3" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="logs\" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\Core\Common\Common.csproj" />
+		<ProjectReference Include="..\..\Infrastructure\Infrastructure\Infrastructure.csproj" />
+		<ProjectReference Include="..\..\Infrastructure\Persistence\Persistence.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+		<!-- Evitar que se copien appsettings.json y appsettings.*.json -->
+		<Content Remove="appsettings.json" />
+		<Content Remove="appsettings.*.json" />
+	</ItemGroup>
+
+</Project>

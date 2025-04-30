@@ -1,0 +1,62 @@
+# .NET Core/ASP.NET Core
+*.dll
+*.exe
+*.so
+*.dylib
+*.tmp
+*.obj
+*.pdb
+*.mdb
+*.log
+*.vspscc
+*.vssscc
+.vscode/
+.vs/
+.nuget/
+*.nupkg
+*.snk
+.project
+.idea/
+.DS_Store
+
+# User-specific files
+*.user
+*.rsuser
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Auto-generated files
+Generated_Code/
+_Debug/
+_Release/
+_Releases/
+
+# Build results
+bin/
+obj/
+out/
+
+# Logs folder (if you store your logs in a "logs" folder)
+logs/
+*.log
+
+# Enable this if using Rider
+.idea/
+
+# Resharper files
+*.DotSettings.user
+
+# Publish outputs
+wwwroot/
+node_modules/
+libman.json
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# JetBrains Rider files
+.idea/
+
+# DataBase
+Src/Presentation/WebApi/Data
