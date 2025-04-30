@@ -1,3 +1,4 @@
+using BancaCore.Application.Common.Enumerable;
 using BancaCore.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -110,7 +111,7 @@ namespace BancaCore.Persistence
                 new Transaccion
                 {
                     CuentaId = cuentas[0].Id,
-                    TipoTransaccion = "Depósito",
+                    TipoTransaccion = (int)EnumTipoTransaccion.Deposito,
                     Descripcion = "Depósito inicial",
                     Monto = 15000.00m,
                     SaldoPosterior = 15000.00m,
@@ -119,7 +120,7 @@ namespace BancaCore.Persistence
                 new Transaccion
                 {
                     CuentaId = cuentas[1].Id,
-                    TipoTransaccion = "Depósito",
+                    TipoTransaccion = (int)EnumTipoTransaccion.Deposito,
                     Descripcion = "Depósito inicial",
                     Monto = 10000.00m,
                     SaldoPosterior = 10000.00m,
@@ -128,7 +129,7 @@ namespace BancaCore.Persistence
                 new Transaccion
                 {
                     CuentaId = cuentas[1].Id,
-                    TipoTransaccion = "Retiro",
+                    TipoTransaccion = (int)EnumTipoTransaccion.Retiro,
                     Descripcion = "Pago de servicios",
                     Monto = 1500.00m,
                     SaldoPosterior = 8500.00m,
@@ -137,7 +138,7 @@ namespace BancaCore.Persistence
                 new Transaccion
                 {
                     CuentaId = cuentas[2].Id,
-                    TipoTransaccion = "Depósito",
+                    TipoTransaccion = (int)EnumTipoTransaccion.Deposito,
                     Descripcion = "Depósito inicial",
                     Monto = 22000.00m,
                     SaldoPosterior = 22000.00m,
@@ -146,7 +147,7 @@ namespace BancaCore.Persistence
                 new Transaccion
                 {
                     CuentaId = cuentas[3].Id,
-                    TipoTransaccion = "Depósito",
+                    TipoTransaccion = (int)EnumTipoTransaccion.Deposito,
                     Descripcion = "Depósito inicial",
                     Monto = 5000.00m,
                     SaldoPosterior = 5000.00m,
@@ -155,7 +156,7 @@ namespace BancaCore.Persistence
                 new Transaccion
                 {
                     CuentaId = cuentas[3].Id,
-                    TipoTransaccion = "Retiro",
+                    TipoTransaccion = (int)EnumTipoTransaccion.Retiro,
                     Descripcion = "Compra en línea",
                     Monto = 1500.00m,
                     SaldoPosterior = 3500.00m,

@@ -21,9 +21,9 @@ namespace BancaCore.Domain.Entities
         public int CuentaId { get; set; }
 
         /// <summary>
-        /// Tipo de transacción realizada (Depósito, Retiro, Transferencia, etc.)
+        /// Tipo de transacción realizada (Depósito, Retiro, etc.)
         /// </summary>
-        public string TipoTransaccion { get; set; }
+        public int TipoTransaccion { get; set; }
 
         /// <summary>
         /// Descripción detallada de la transacción
@@ -43,7 +43,7 @@ namespace BancaCore.Domain.Entities
         /// <summary>
         /// Fecha y hora en que se realizó la transacción
         /// </summary>
-        public DateTime? FechaTransaccion { get; set; }
+        public DateTime FechaTransaccion { get; set; }
 
         /// <summary>
         /// Referencia a la cuenta bancaria donde se realizó la transacción
