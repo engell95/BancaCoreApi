@@ -1,4 +1,5 @@
 using BancaCore.Application.Transacciones.Commands.RealizarDeposito;
+using BancaCore.Common.Enumerable;
 using BancaCore.Common.Interfaces;
 using BancaCore.Domain.Entities;
 using MediatR;
@@ -9,7 +10,6 @@ namespace BancaCore.Application.CuentasBancarias.Commands.CreateCuentaBancaria
 {
     public class CreateCuentaBancariaCommand : IRequest<string>
     {
-        public string NumeroCuenta { get; set; }
         public int ClienteId { get; set; }
         public decimal SaldoInicial { get; set; }
     }
@@ -34,7 +34,7 @@ namespace BancaCore.Application.CuentasBancarias.Commands.CreateCuentaBancaria
             // Crear la cuenta bancaria con saldo inicial en cero
             var cuenta = new CuentaBancaria
             {
-                NumeroCuenta = request.NumeroCuenta,
+                NumeroCuenta = CuentaBancariaHelper.GenerarNumeroCuenta(),
                 ClienteId = request.ClienteId,
                 Saldo = 0, // Inicializar en cero, el depósito actualizará el saldo
             };

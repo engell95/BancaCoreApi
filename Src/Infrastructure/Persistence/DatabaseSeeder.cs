@@ -1,4 +1,4 @@
-using BancaCore.Application.Common.Enumerable;
+using BancaCore.Common.Enumerable;
 using BancaCore.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -78,25 +78,25 @@ namespace BancaCore.Persistence
             {
                 new CuentaBancaria
                 {
-                    NumeroCuenta = "1001-2345-6789",
+                    NumeroCuenta = CuentaBancariaHelper.GenerarNumeroCuenta(),
                     ClienteId = clientes[0].Id,
                     Saldo = 15000.00m
                 },
                 new CuentaBancaria
                 {
-                    NumeroCuenta = "1001-3456-7890",
+                    NumeroCuenta = CuentaBancariaHelper.GenerarNumeroCuenta(),
                     ClienteId = clientes[1].Id,
                     Saldo = 8500.00m
                 },
                 new CuentaBancaria
                 {
-                    NumeroCuenta = "1001-4567-8901",
+                    NumeroCuenta = CuentaBancariaHelper.GenerarNumeroCuenta(),
                     ClienteId = clientes[2].Id,
                     Saldo = 22000.00m
                 },
                 new CuentaBancaria
                 {
-                    NumeroCuenta = "1001-5678-9012",
+                    NumeroCuenta = CuentaBancariaHelper.GenerarNumeroCuenta(),
                     ClienteId = clientes[0].Id,
                     Saldo = 3500.00m
                 }

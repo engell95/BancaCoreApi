@@ -1,4 +1,4 @@
-using BancaCore.Application.Common.Enumerable;
+using BancaCore.Common.Enumerable;
 using BancaCore.Common.Exceptions;
 using BancaCore.Common.Interfaces;
 using BancaCore.Domain.Entities;
