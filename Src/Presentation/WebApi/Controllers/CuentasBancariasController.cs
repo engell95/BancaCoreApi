@@ -1,6 +1,6 @@
 using BancaCore.Application.CuentasBancarias.Commands.CreateCuentaBancaria;
 using BancaCore.Application.CuentasBancarias.Queries;
-using BancaCore.Application.CuentasBancarias.Queries.GetCuentaBancariaById;
+using BancaCore.Application.CuentasBancarias.Queries.GetCuentaBancariaByNumeroCuenta;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -20,9 +20,9 @@ namespace BancaCore.WebApi.Controllers
         [ProducesResponseType(typeof(HttpValidationProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<CuentaBancariaDto>> Gets(string numeroCuenta)
+        public async Task<ActionResult<CuentaBancariaDto>> GetByNumeroCuenta(string numeroCuenta)
         {
-            return await Mediator.Send(new GetCuentaBancariaByIdQuery { NumeroCuenta = numeroCuenta });
+            return await Mediator.Send(new GetCuentaBancariaByNumeroCuentaQuery { NumeroCuenta = numeroCuenta });
         }
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace BancaCore.WebApi.Controllers
         public async Task<ActionResult<int>> Create(CreateCuentaBancariaCommand command)
         {
             var numeroCuenta = await Mediator.Send(command);
-            return CreatedAtAction(nameof(Gets), new { numeroCuenta }, numeroCuenta);
+            return CreatedAtAction(nameof(GetByNumeroCuenta), new { numeroCuenta }, numeroCuenta);
         }
 
 

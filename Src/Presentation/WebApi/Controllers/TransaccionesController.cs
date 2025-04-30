@@ -49,7 +49,7 @@ namespace BancaCore.WebApi.Controllers
         [ProducesResponseType(typeof(HttpValidationProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<TransaccionesSummaryDto>> GetResumenTransacciones(string numeroCuenta)
+        public async Task<ActionResult<TransaccionesSummaryDto>> GetByNumeroCuenta(string numeroCuenta)
         {
             return await Mediator.Send(new GetTransaccionesSummaryQuery { NumeroCuenta = numeroCuenta });
         }

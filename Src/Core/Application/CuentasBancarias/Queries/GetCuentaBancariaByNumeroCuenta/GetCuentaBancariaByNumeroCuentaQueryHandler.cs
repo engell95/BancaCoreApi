@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using AutoMapper.QueryableExtensions;
 using BancaCore.Common.Exceptions;
 using BancaCore.Common.Interfaces;
 using MediatR;
@@ -7,24 +6,24 @@ using Microsoft.EntityFrameworkCore;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace BancaCore.Application.CuentasBancarias.Queries.GetCuentaBancariaById
+namespace BancaCore.Application.CuentasBancarias.Queries.GetCuentaBancariaByNumeroCuenta
 {
     /// <summary>
     /// Manejador de la consulta GetCuentaBancariaByIdQuery 
     /// Implementa la lógica para obtener el detalle de una cuenta con sus transacciones de la base de datos
     /// </summary>
-    public class GetCuentaBancariaByIdQueryHandler : IRequestHandler<GetCuentaBancariaByIdQuery, CuentaBancariaDto>
+    public class GetCuentaBancariaByNumeroCuentaQueryHandler : IRequestHandler<GetCuentaBancariaByNumeroCuentaQuery, CuentaBancariaDto>
     {
         private readonly IBancaDbContext _context;
         private readonly IMapper _mapper;
 
-        public GetCuentaBancariaByIdQueryHandler(IBancaDbContext context, IMapper mapper)
+        public GetCuentaBancariaByNumeroCuentaQueryHandler(IBancaDbContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
         }
 
-        public async Task<CuentaBancariaDto> Handle(GetCuentaBancariaByIdQuery request, CancellationToken cancellationToken)
+        public async Task<CuentaBancariaDto> Handle(GetCuentaBancariaByNumeroCuentaQuery request, CancellationToken cancellationToken)
         {
             var cuenta = await _context.CuentasBancarias
            .Include(c => c.Cliente)
