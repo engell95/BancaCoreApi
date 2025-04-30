@@ -4,6 +4,8 @@
     <TargetFramework>net8.0</TargetFramework>
 	  <AssemblyName>BancaCore.WebApi</AssemblyName>
 	  <RootNamespace>BancaCore.WebApi</RootNamespace>
+	  <GenerateDocumentationFile>true</GenerateDocumentationFile>
+	  <NoWarn>$(NoWarn);1591</NoWarn>
   </PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
